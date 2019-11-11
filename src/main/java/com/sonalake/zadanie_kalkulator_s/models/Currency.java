@@ -5,21 +5,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class Country {
+public class Currency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
-    private String isoCode;
-    private Integer tax;
-    private Integer fixedCosts;
+    private String currencyCode;
+    private Float exchangeRate;
+    private LocalDate lastUpdate;
     @OneToOne(cascade = CascadeType.ALL)
-    private Currency currency;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "country")
-    private List<Offer> offers;
+    private Country country;
 }
