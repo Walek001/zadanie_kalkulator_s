@@ -1,5 +1,7 @@
 package com.sonalake.zadanie_kalkulator_s.utils;
 
+import com.sonalake.zadanie_kalkulator_s.exceptions.ServerNotRespondingException;
+import com.sonalake.zadanie_kalkulator_s.exceptions.UnsupportedCurrencyCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
