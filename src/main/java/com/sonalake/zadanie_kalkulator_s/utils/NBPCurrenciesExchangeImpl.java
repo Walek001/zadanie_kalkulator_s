@@ -1,6 +1,5 @@
 package com.sonalake.zadanie_kalkulator_s.utils;
 
-import kotlin.jvm.Throws;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
