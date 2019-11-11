@@ -1,5 +1,5 @@
 package com.sonalake.zadanie_kalkulator_s.utils;
 
 public interface CurrenciesExchange {
-    ExchangeRate getCurrencyExchangeRate(String currencyCode);
+    ExchangeRate getCurrencyExchangeRate(String currencyCode) throws UnsupportedCurrencyCode, ServerNotRespondingException;
 }
