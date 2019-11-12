@@ -13,7 +13,7 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-class ExchangeRate { //TODO: This should be interface which has 3 field currencyCode, rate and lastUpdate. And whole code should be NBPEXchangeRate which implements this interface.
+public class ExchangeRate { //TODO: This should be interface which has 3 field currencyCode, rate and lastUpdate. And whole code should be NBPEXchangeRate which implements this interface.
     @JsonProperty("code") String currencyCode;
     private Float rate;
     private LocalDate lastUpdate;
