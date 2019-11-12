@@ -24,6 +24,7 @@ public class Currency {
     private String currencyCode;
     @NotNull
     private Float exchangeRate;
+    @NotNull
     private LocalDate lastUpdate;
 
     public Currency(ExchangeRate exchangeRate) {
