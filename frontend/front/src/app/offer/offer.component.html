@@ -1,0 +1,17 @@
+<div>
+  <label>Daily payment:
+    <input #dailyPay/>
+  </label>
+  <select [(ngModel)]="selectedOption">
+    <option *ngFor="let country of countries" value="{{ country.id }}">{{ country.isoCode }}</option>
+  </select>
+  <button (click)="calcOffer(dailyPay.value, selectedOption);">
+    add
+  </button>
+</div>
+
+<div>
+  <h2>Oferta:</h2>
+  {{ offerDTO.countryCode }} {{ offerDTO.monthPayment }}
+</div>
+
