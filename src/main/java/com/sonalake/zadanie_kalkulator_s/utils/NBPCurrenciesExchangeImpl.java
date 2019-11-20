@@ -29,7 +29,7 @@ public class NBPCurrenciesExchangeImpl implements CurrenciesExchange {
                 return restTemplate.getForObject(uri, ExchangeRate.class);
             } catch (HttpClientErrorException e) {
                 if(e.getRawStatusCode() == 404)
-                    throw new UnsupportedCurrencyCode();
+                    throw new UnsupportedCurrencyCode(currencyCode);
                 else
                     throw new ServerNotRespondingException();
             }
