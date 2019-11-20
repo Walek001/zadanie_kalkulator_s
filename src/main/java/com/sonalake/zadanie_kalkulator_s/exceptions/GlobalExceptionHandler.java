@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(UnsupportedCurrencyCode.class)
-    public ResponseEntity<Object> handleException(UnsupportedCurrencyCode e) {
+
+    @ExceptionHandler({UnsupportedCurrencyCode.class, CountryNotExist.class})
+    public ResponseEntity<Object> handleException(Exception e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

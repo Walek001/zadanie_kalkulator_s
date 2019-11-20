@@ -1,8 +1,8 @@
 package com.sonalake.zadanie_kalkulator_s.controllers;
 
 import com.sonalake.zadanie_kalkulator_s.DTOs.DisplayOfferDTO;
+import com.sonalake.zadanie_kalkulator_s.exceptions.CountryNotExist;
 import com.sonalake.zadanie_kalkulator_s.exceptions.UnsupportedCurrencyCode;
-import com.sonalake.zadanie_kalkulator_s.models.Country;
 import com.sonalake.zadanie_kalkulator_s.models.Offer;
 import com.sonalake.zadanie_kalkulator_s.services.CalculatedOffer;
 import com.sonalake.zadanie_kalkulator_s.services.OfferService;
@@ -24,7 +24,7 @@ public class OfferController {
     }
 
     @PostMapping(OFFERS_PATH)
-    public DisplayOfferDTO createOffer(Country country, @RequestParam Integer dailyPayment) throws UnsupportedCurrencyCode {
+    public DisplayOfferDTO createOffer(Integer country, @RequestParam Integer dailyPayment) throws CountryNotExist, UnsupportedCurrencyCode {
         Offer offer = offerService.createOffer(country, dailyPayment);
         CalculatedOffer calculatedOffer = offerService.calculateOffer(offer);
         return new DisplayOfferDTO(calculatedOffer);
