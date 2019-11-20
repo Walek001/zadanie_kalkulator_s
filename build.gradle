@@ -8,6 +8,14 @@ group = 'com.sonalake'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+sourceSets {
+    integrationTests {
+            java.srcDir "$projectDir/src/integrationTests/java"
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+    }
+}
+
 configurations {
     developmentOnly
     runtimeClasspath {
@@ -29,7 +37,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.postgresql:postgresql'
+    runtime 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
     compile group: 'org.springframework', name: 'spring-web', version: '5.2.1.RELEASE'
@@ -43,3 +51,22 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+
+configurations {
+    integrationTestsImplementation.extendsFrom testImplementation
+    integrationTestsRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    useJUnitPlatform()
+    description = 'Runs the integration tests.'
+    group = 'verification'
+    testClassesDirs = sourceSets.integrationTests.output.classesDirs
+    classpath = sourceSets.integrationTests.runtimeClasspath
+    outputs.upToDateWhen { false }
+    mustRunAfter test
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
