@@ -28,15 +28,15 @@ public class Currency {
     private LocalDate lastUpdate;
 
     public Currency(ExchangeRate exchangeRate) {
-        this.setCurrencyCode(exchangeRate.getCurrencyCode());
-        this.setExchangeRate(exchangeRate.getRate());
-        this.setLastUpdate(exchangeRate.getLastUpdate());
+        this.currencyCode = exchangeRate.getCurrencyCode();
+        this.exchangeRate = exchangeRate.getRate();
+        this.lastUpdate = exchangeRate.getLastUpdate();
     }
 
     public Currency updateCurrency(ExchangeRate exchangeRate) {
-        this.setCurrencyCode(exchangeRate.getCurrencyCode());
-        this.setExchangeRate(exchangeRate.getRate());
-        this.setLastUpdate(exchangeRate.getLastUpdate());
+        this.currencyCode = exchangeRate.getCurrencyCode();
+        this.exchangeRate = exchangeRate.getRate();
+        this.lastUpdate = exchangeRate.getLastUpdate();
         return this;
     }
 
