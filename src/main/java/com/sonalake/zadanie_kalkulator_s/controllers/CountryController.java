@@ -3,6 +3,7 @@ package com.sonalake.zadanie_kalkulator_s.controllers;
 import com.sonalake.zadanie_kalkulator_s.DTOs.CountriesDTO;
 import com.sonalake.zadanie_kalkulator_s.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("api")
 public class CountryController {
-    static final String GET_COUNTRIES_PATH = "/countries";
+    private static final String GET_COUNTRIES_PATH = "/countries";
 
     private CountryService countryService;
 
@@ -20,7 +21,7 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-    @RequestMapping(GET_COUNTRIES_PATH)
+    @GetMapping(GET_COUNTRIES_PATH)
     public List<CountriesDTO> getCountries() {
         return countryService.getAllCountries().stream().map(CountriesDTO::new).collect(Collectors.toList());
     }
