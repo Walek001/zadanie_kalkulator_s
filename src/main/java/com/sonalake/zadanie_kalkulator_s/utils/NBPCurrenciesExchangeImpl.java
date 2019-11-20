@@ -2,6 +2,7 @@ package com.sonalake.zadanie_kalkulator_s.utils;
 
 import com.sonalake.zadanie_kalkulator_s.exceptions.ServerNotRespondingException;
 import com.sonalake.zadanie_kalkulator_s.exceptions.UnsupportedCurrencyCode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -10,10 +11,13 @@ import java.time.LocalDate;
 
 @Component
 public class NBPCurrenciesExchangeImpl implements CurrenciesExchange {
-    private RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate;
+    private String base_uri;
 
-    private final String base_uri = "http://api.nbp.pl/api/exchangerates/rates/a/";
-
+    public NBPCurrenciesExchangeImpl(@Value("${nbp.baseUrl}") String base_uri) {
+        this.restTemplate = new RestTemplate();
+        this.base_uri = base_uri;
+    }
 
     @Override
     public ExchangeRate getCurrencyExchangeRate(String currencyCode) throws UnsupportedCurrencyCode, ServerNotRespondingException {
