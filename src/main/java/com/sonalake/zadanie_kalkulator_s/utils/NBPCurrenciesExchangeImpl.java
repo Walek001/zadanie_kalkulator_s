@@ -14,7 +14,7 @@ public class NBPCurrenciesExchangeImpl implements CurrenciesExchange {
     private RestTemplate restTemplate;
     private String base_uri;
 
-    public NBPCurrenciesExchangeImpl(@Value("${nbp.baseUrl}") String base_uri) {
+    public NBPCurrenciesExchangeImpl(@Value("${nbp.base-url}") String base_uri) {
         this.restTemplate = new RestTemplate();
         this.base_uri = base_uri;
     }

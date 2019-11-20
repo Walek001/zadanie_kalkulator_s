@@ -17,7 +17,7 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private Country country;
     @Min(0)
     @NotNull

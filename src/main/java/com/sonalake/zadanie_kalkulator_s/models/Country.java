@@ -27,6 +27,6 @@ public class Country {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Currency currency;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "country")
+    @OneToMany(mappedBy = "country")
     private List<Offer> offers = Collections.emptyList();
 }

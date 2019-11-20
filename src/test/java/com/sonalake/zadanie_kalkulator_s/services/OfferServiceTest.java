@@ -1,10 +1,12 @@
 package com.sonalake.zadanie_kalkulator_s.services;
 
+import com.sonalake.zadanie_kalkulator_s.configs.WorkingDaysConfig;
 import com.sonalake.zadanie_kalkulator_s.exceptions.UnsupportedCurrencyCode;
 import com.sonalake.zadanie_kalkulator_s.models.Country;
 import com.sonalake.zadanie_kalkulator_s.models.Currency;
 import com.sonalake.zadanie_kalkulator_s.models.Offer;
 import com.sonalake.zadanie_kalkulator_s.repositories.OfferRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class OfferServiceTest {
@@ -23,8 +26,16 @@ class OfferServiceTest {
     @Mock
     OfferRepository offerRepository;
 
+    @Mock
+    WorkingDaysConfig workingDaysConfig;
+
     @InjectMocks
     OfferService offerService;
+
+    @BeforeEach
+    public void setUp() {
+        when(workingDaysConfig.getCount()).thenReturn(22);
+    }
 
     @Test
     public void calculateOffer_shouldCalcaluateOffer() throws UnsupportedCurrencyCode {
