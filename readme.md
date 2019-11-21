@@ -1,18 +1,18 @@
-#Table of contents
+# Table of contents
 * [Recruit task for sonalake](#recruit-task-for-sonalake)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Api usage](#api-usage)
 
-##Recruit task for sonalake
+## Recruit task for sonalake
 
 
-##Technologies
+## Technologies
 * Spring Boot
 * Lombok
 * Postgresql
 * Swagger
-##Setup
+## Setup
 1. Create database:
     ```
     docker-compose up -d
@@ -29,12 +29,12 @@
     ```
     java -jar build/libs/zadanie_kalkulator_s-0.0.1-SNAPSHOT.jar 
     ```
-##Api usage
-###Get All countries - endpoint providing list of countries.
+## Api usage
+### Get All countries - endpoint providing list of countries.
 
 ```GET - http://localhost:8080/api/countries ```
 
-####Responses:
+#### Responses:
 
 Code 200:
 ```json
@@ -46,7 +46,7 @@ Code 200:
 ]
 
 ```
-###Create Offer - endpoint providing creation of offer, which are also stored in the system.
+### Create Offer - endpoint providing creation of offer, which are also stored in the system.
 ```
 POST - http://localhost:8080/api/offers?country={countryId}
 ```
@@ -56,7 +56,7 @@ Body
   "dailyPayment": 0
 }
 ```
-####Response:
+#### Response:
 ```json
 {
   "countryCode": "string",
