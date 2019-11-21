@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({providedIn: 'root'})
 export class OfferService {
@@ -9,9 +9,11 @@ export class OfferService {
   constructor(private http: HttpClient) { }
 
   calcOffer(dailyPayment: number, countryID: number) {
-    console.log(dailyPayment, countryID)
-    const body = "?country=" + countryID + "&dailyPayment=" + dailyPayment * 100;
-    console.log(this.url+body);
-    return this.http.post(this.url+body, "");
+    console.log(dailyPayment, countryID);
+    dailyPayment = dailyPayment * 100;
+    let dailyPaymentString = dailyPayment.toFixed(0);
+    const params = "?country=" + countryID ;
+    let header = new HttpHeaders({'content-type': 'application/json'});
+    return this.http.post(this.url+params, "{\"dailyPayment\": "+ dailyPaymentString +"}", {headers: header});
   }
 }

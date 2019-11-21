@@ -44,8 +44,8 @@ export class OfferComponent implements OnInit {
 
   calcOffer(dailyPayment: number, countryID: number) {
     this.offerService.calcOffer(dailyPayment, countryID).subscribe(data => {
-        this.offerDTO = new OfferDto(data.monthPayment, data.countryCode)
-        console.log(this.offer)
+        this.offerDTO = new OfferDto(data["monthPayment"], data["countryCode"]);
+        console.log(this.offer);
     });
   }
 
