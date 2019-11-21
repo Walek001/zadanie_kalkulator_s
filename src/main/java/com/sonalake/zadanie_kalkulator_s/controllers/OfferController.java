@@ -6,12 +6,16 @@ import com.sonalake.zadanie_kalkulator_s.exceptions.UnsupportedCurrencyCode;
 import com.sonalake.zadanie_kalkulator_s.models.Offer;
 import com.sonalake.zadanie_kalkulator_s.services.CalculatedOffer;
 import com.sonalake.zadanie_kalkulator_s.services.OfferService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(description = "Api for consuming and creating offers")
 @RestController
 @RequestMapping("api")
 public class OfferController {
@@ -23,8 +27,11 @@ public class OfferController {
         this.offerService = offerService;
     }
 
+    @ApiOperation(value = "Create and calculate new offer", nickname = "Create offer")
     @PostMapping(OFFERS_PATH)
-    public DisplayOfferDTO createOffer(Integer country, @RequestParam Integer dailyPayment) throws CountryNotExist, UnsupportedCurrencyCode {
+    public DisplayOfferDTO createOffer(@ApiParam(value = "ID of the country which the offer concerns.") @RequestParam  Integer country,
+                                       @ApiParam(value = "Daily payment multiplied by 100") @RequestParam Integer dailyPayment)
+            throws CountryNotExist, UnsupportedCurrencyCode {
         Offer offer = offerService.createOffer(country, dailyPayment);
         CalculatedOffer calculatedOffer = offerService.calculateOffer(offer);
         return new DisplayOfferDTO(calculatedOffer);
