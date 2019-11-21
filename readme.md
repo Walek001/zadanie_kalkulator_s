@@ -48,7 +48,13 @@ Code 200:
 ```
 ###Create Offer - endpoint providing creation of offer, which are also stored in the system.
 ```
-POST - http://localhost:8080/api/offers?country={countryId}&dailyPayment={dailyPayment*100}
+POST - http://localhost:8080/api/offers?country={countryId}
+```
+Body
+```json
+{
+  "dailyPayment": 0
+}
 ```
 ####Response:
 ```json

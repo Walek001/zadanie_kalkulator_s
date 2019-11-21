@@ -1,5 +1,6 @@
 package com.sonalake.zadanie_kalkulator_s.services;
 
+import com.sonalake.zadanie_kalkulator_s.DTOs.DailyPaymentDTO;
 import com.sonalake.zadanie_kalkulator_s.DTOs.DisplayOfferDTO;
 import com.sonalake.zadanie_kalkulator_s.controllers.OfferController;
 import com.sonalake.zadanie_kalkulator_s.exceptions.CountryNotExist;
@@ -24,7 +25,8 @@ public class OfferControllerIntegrationTest {
 
     @Test
     public void calcOfferTest() throws UnsupportedCurrencyCode, CountryNotExist {
-        DisplayOfferDTO result = offerController.createOffer(1, 10000);
+        DailyPaymentDTO dailyPaymentDTO = new DailyPaymentDTO(10000);
+        DisplayOfferDTO result = offerController.createOffer(1, dailyPaymentDTO);
 
         assertEquals(810f, result.getMonthPayment());
         assertEquals("PL", result.getCountryCode());
@@ -32,6 +34,7 @@ public class OfferControllerIntegrationTest {
 
     @Test
     public void calcOfferTest_shouldThrowException() {
-        assertThrows(CountryNotExist.class,() -> offerController.createOffer(100, 10000));
+        DailyPaymentDTO dailyPaymentDTO = new DailyPaymentDTO(100000);
+        assertThrows(CountryNotExist.class,() -> offerController.createOffer(100, dailyPaymentDTO));
     }
 }
