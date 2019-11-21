@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 
+/**
+ * NBP Currencies Exchange implementation for providing currency exchange rate based on nbp api.
+ */
 @Component
 public class NBPCurrenciesExchangeImpl implements CurrenciesExchange {
     private RestTemplate restTemplate;
@@ -19,6 +22,13 @@ public class NBPCurrenciesExchangeImpl implements CurrenciesExchange {
         this.base_uri = base_uri;
     }
 
+    /**
+     * This method returns Exchange Rate for provided currency code.
+     * @param currencyCode for currency which exchange rate should be provided
+     * @return {@link ExchangeRate} for provided currency code.
+     * @throws UnsupportedCurrencyCode when procided currency code is not supported by api.
+     * @throws ServerNotRespondingException when nbp api is down
+     */
     @Override
     public ExchangeRate getCurrencyExchangeRate(String currencyCode) throws UnsupportedCurrencyCode, ServerNotRespondingException {
         if(currencyCode.equals("PLN"))

@@ -20,6 +20,12 @@ public class CurrencyService {
         this.currenciesExchange = currenciesExchange;
     }
 
+    /**
+     * This method returns currency rate for specified country. It uses nbp api by default.
+     * @param country for which exchange should be checked
+     * @return Exchange rate for provided.
+     * @throws UnsupportedCurrencyCode when currency code is not supported by exchange service.
+     */
     public Currency getCurrentCurrencyRateFor(Country country) throws UnsupportedCurrencyCode {
         Currency currency = country.getCurrency();
         try {

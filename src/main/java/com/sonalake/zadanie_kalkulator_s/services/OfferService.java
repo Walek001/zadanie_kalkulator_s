@@ -28,6 +28,13 @@ public class OfferService {
         this.workingDaysConfig = workingDaysConfig;
     }
 
+    /**
+     * Create offer and saves it in database.
+     * @param countryId Country for which offer is created.
+     * @param dailyPayment daily payment multiplied by 100 to avoid using float
+     * @return created offer
+     * @throws CountryNotExist
+     */
     public Offer createOffer(Integer countryId, Integer dailyPayment) throws CountryNotExist {
         Country country = countryService.getCountryByIdOr404(countryId);
         Offer offer = new Offer();
@@ -36,6 +43,12 @@ public class OfferService {
         return offerRepository.save(offer);
     }
 
+    /**
+     * Calculate offer for configured days.
+     * @param offer to be calculated
+     * @return Calculated offer in PLN
+     * @throws UnsupportedCurrencyCode
+     */
     public CalculatedOffer calculateOffer(Offer offer) throws UnsupportedCurrencyCode {
         CalculatedOffer calculatedOffer = new CalculatedOffer();
         calculatedOffer.setCountry(offer.getCountry());

@@ -8,14 +8,26 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Transfer object for exchange rate.
+ */
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 public class ExchangeRate {
+    /**
+     * Currency code for exchange rate.
+     */
     @JsonProperty("code") String currencyCode;
+    /**
+     * Exchange rate to PLN for currency.
+     */
     private Float rate;
+    /**
+     * Date of update for currency.
+     */
     private LocalDate lastUpdate;
     @JsonProperty("rates")
     private void unpackRate(List<Map<String, String>> rates) {
