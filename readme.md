@@ -1,7 +1,65 @@
-1. Utils package contains interface for currencies exchange, because we use it in future we can easly imnplement new Api.
-2. Offer saves daily rate, because in future we can calculate salary per week or per working days in specified month/year.
-3. Country has relation to offers, because if we delete the country we want to delete all of the offers which are in this country.
-4. Offer has PERSIST relation to country, because we want to update country every time we update offer. 
-5. Frontend app is in frontend folder. 
-6. I do not make test for simple crud operations, focusing more on business logic.
-7. I don't test fronted, because I don't have previous experience with Angular or any Frontend framework, if I have more time I probably try to use Selenium for behavioral testing. 
+#Table of contents
+* [Recruit task for sonalake](#recruit-task-for-sonalake)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Api usage](#api-usage)
+
+##Recruit task for sonalake
+
+
+##Technologies
+* Spring Boot
+* Lombok
+* Postgresql
+* Swagger
+##Setup
+1. Create database:
+    ```
+    docker-compose up -d
+    ```
+2. Running tests:
+    ```
+    ./gradlew test
+    ```
+3. Build project using gradle:
+    ```
+    ./gradlew clean build
+    ```
+4. Run backend:
+    ```
+    java -jar build/libs/zadanie_kalkulator_s-0.0.1-SNAPSHOT.jar 
+    ```
+##Api usage
+###Get All countries - endpoint providing list of countries.
+
+```GET - http://localhost:8080/api/countries ```
+
+####Responses:
+
+Code 200:
+```json
+[
+  {
+    "id": 0,
+    "isoCode": "string"
+  }
+]
+
+```
+###Create Offer - endpoint providing creation of offer, which are also stored in the system.
+```
+POST - http://localhost:8080/api/offers?country={countryId}&dailyPayment={dailyPayment*100}
+```
+####Response:
+```json
+{
+  "countryCode": "string",
+  "monthPayment": 0
+}
+```
+### Swagger
+Api is also described in Swagger:
+
+http://localhost:8080/swagger-ui.html
+
+You can use swagger only after running the server.
